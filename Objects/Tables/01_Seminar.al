@@ -28,7 +28,7 @@ table 123456701 "CSD Seminar"
                     "Search Name" := Name;
             end;
         }
-        field(11; "Saminar duration"; Decimal)
+        field(11; "Seminar duration"; Decimal)
         {
             Caption = 'Seminar Duration';
         }
@@ -138,7 +138,7 @@ table 123456701 "CSD Seminar"
     end;
 
     var
-        SeminarSetup: Record "CSD Semonar Setup";
+        SeminarSetup: Record "CSD Seminar Setup";
         // CommentLine: Record "CSD Comment Line";
         Seminar: Record "CSD Seminar";
         GenProdPostingGroup: Record "Gen. Product Posting Group";
