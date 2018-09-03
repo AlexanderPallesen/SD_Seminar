@@ -23,7 +23,8 @@ pageextension 123456701 "CSD ResourceListExt" extends "Resource List"
     begin
         FilterGroup(3);
         ShowType := GetFilter(Type) = '';
-        ShowMaxField := GetFilter(Type) = format(Type::Machine);        
+        ShowMaxField := GetFilter(Type) = format(Type::Machine);      
+        FilterGroup(0);  
     end;    
 
     var
