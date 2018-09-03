@@ -13,27 +13,27 @@ page 123456702 "CSD Seminar List"
         {
             repeater(Group)
             {
-                field("No.";"No.")
+                field("No."; "No.")
                 {
 
                 }
-                field(Name;Name)
+                field(Name; Name)
                 {
 
                 }
-                field("Seminar duration";"Seminar duration")
+                field("Seminar duration"; "Seminar duration")
                 {
 
                 }
-                field("Seminar Price";"Seminar Price")
+                field("Seminar Price"; "Seminar Price")
                 {
 
                 }
-                field("Minimum Participants";"Minimum Participants")
+                field("Minimum Participants"; "Minimum Participants")
                 {
 
                 }
-                field("Maximum Participants";"Maximum Participants")
+                field("Maximum Participants"; "Maximum Participants")
                 {
 
                 }
