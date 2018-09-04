@@ -19,7 +19,7 @@ codeunit 123456739 EventSubscriptions
     DocNoOfRecords: Integer;
     NextEntryNo: Integer;
   begin
-      if PostedSeminarRegHeader.ReadPermission then begin
+    if PostedSeminarRegHeader.ReadPermission then begin
       PostedSeminarRegHeader.Reset;
       PostedSeminarRegHeader.SetFilter("No.",DocNoFilter);
       PostedSeminarRegHeader.SetFilter("Posting Date",PostingDateFilter);
@@ -40,7 +40,7 @@ codeunit 123456739 EventSubscriptions
         Insert;          
       end;
     end;
-      if SeminarLedgerEntry.ReadPermission then begin
+    if SeminarLedgerEntry.ReadPermission then begin
       SeminarLedgerEntry.Reset;
       SeminarLedgerEntry.SetFilter("Document No.",DocNoFilter);
       SeminarLedgerEntry.SetFilter("Posting Date",PostingDateFilter);
@@ -49,7 +49,7 @@ codeunit 123456739 EventSubscriptions
         if DocNoOfRecords = 0 then
           exit;
         if FindLast then
-          NextEntryNo := "Entry No."
+          NextEntryNo := "Entry No." + 1
         else
           NextEntryNo := 1;
         init;
