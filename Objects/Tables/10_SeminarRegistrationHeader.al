@@ -7,66 +7,70 @@ table 123456710 "CSD Seminar Reg. Header"
 
     fields
     {
-        field(1;"No.";Code[20])
+        field(1; "No."; Code[20])
         {
             Caption = 'No.';
 
             trigger OnValidate();
             begin
                 if "No." <> xRec."No." then begin
-                  SeminarSetup.Get;
-                  NoSeriesMgt.TestManual(SeminarSetup."Seminar Registration Nos.");
-                  "No. Series" := '';
+                    SeminarSetup.Get;
+                    NoSeriesMgt.TestManual(SeminarSetup."Seminar Registration Nos.");
+                    "No. Series" := '';
                 end;
             end;
         }
-        field(2;"Starting Date";Date)
+        field(2; "Starting Date"; Date)
         {
+            Caption = 'Starting Date';
 
             trigger OnValidate();
             begin
                 if "Starting Date" <> xRec."Starting Date" then
-                  TestField(Status,Status::Planning);
+                    TestField(Status, Status::Planning);
             end;
         }
-        field(3;"Seminar No.";Code[20])
+        field(3; "Seminar No."; Code[20])
         {
             TableRelation = "CSD Seminar";
+            Caption = 'Seminar No.';
 
             trigger OnValidate();
             begin
                 if "Seminar No." <> xRec."Seminar No." then begin
-                  SeminarRegLine.Reset;
-                  SeminarRegLine.SetRange("Document No.","No.");
-                  SeminarRegLine.SetRange(Registered,true);
-                  if not SeminarRegLine.Isempty then
-                    ERROR(
+                    SeminarRegLine.Reset;
+                    SeminarRegLine.SetRange("Document No.", "No.");
+                    SeminarRegLine.SetRange(Registered, true);
+                    if not SeminarRegLine.Isempty then
+                        ERROR(
                       Text002,
                       FieldCaption("Seminar No."),
                       SeminarRegLine.TableCaption,
                       SeminarRegLine.FieldCaption(Registered),
                       true);
 
-                  Seminar.Get("Seminar No.");
-                  Seminar.TestField(Blocked,false);
-                  Seminar.TestField("Gen. Prod. Posting Group");
-                  Seminar.TestField("VAT Prod. Posting Group");
-                  "Seminar Name" := Seminar.Name;
-                  Duration := Seminar."Seminar Duration";
-                  "Seminar Price" := Seminar."Seminar Price";
-                  "Gen. Prod. Posting Group" := Seminar."Gen. Prod. Posting Group";
-                  "VAT Prod. Posting Group" := Seminar."VAT Prod. Posting Group";
-                  "Minimum Participants" := Seminar."Minimum Participants";
-                  "Maximum Participants" := Seminar."Maximum Participants";
+                    Seminar.Get("Seminar No.");
+                    Seminar.TestField(Blocked, false);
+                    Seminar.TestField("Gen. Prod. Posting Group");
+                    Seminar.TestField("VAT Prod. Posting Group");
+                    "Seminar Name" := Seminar.Name;
+                    Duration := Seminar."Seminar Duration";
+                    "Seminar Price" := Seminar."Seminar Price";
+                    "Gen. Prod. Posting Group" := Seminar."Gen. Prod. Posting Group";
+                    "VAT Prod. Posting Group" := Seminar."VAT Prod. Posting Group";
+                    "Minimum Participants" := Seminar."Minimum Participants";
+                    "Maximum Participants" := Seminar."Maximum Participants";
                 end;
             end;
         }
-        field(4;"Seminar Name";Text[50])
+        field(4; "Seminar Name"; Text[50])
         {
+            Caption = 'Seminar Name';
         }
-        field(5;"Instructor Code";Code[10])
+        field(5; "Instructor Code"; Code[10])
         {
-            TableRelation = Resource where (Type=const(Person));
+            TableRelation = Resource where (Type = const (Person));
+            Caption = 'Instructor Code';
 
             trigger OnValidate();
             begin
@@ -79,25 +83,31 @@ table 123456710 "CSD Seminar Reg. Header"
                                                       Type=const(Person)));
             Editable = false;
             FieldClass = FlowField;
+            Caption = 'Instructor Name';
         }
         field(7;Status;Option)
         {
             OptionCaption = 'Planning,Registration,Closed,Canceled';
             OptionMembers = Planning,Registration,Closed,Canceled;
+            Caption = 'Status';
         }
         field(8;Duration;Decimal)
         {
             DecimalPlaces = 0:1;
+            Caption = 'Duration';
         }
         field(9;"Maximum Participants";Integer)
         {
+            Caption = 'Maximum Participants';
         }
         field(10;"Minimum Participants";Integer)
         {
+            Caption = 'Minimum Participants';
         }
         field(11;"Room Code";Code[10])
         {
             TableRelation = Resource where (Type=const(Machine));
+            Caption = 'Room Code';
 
             trigger OnValidate();
             begin
@@ -138,17 +148,21 @@ table 123456710 "CSD Seminar Reg. Header"
         }
         field(12;"Room Name";Text[30])
         {
+            Caption = 'Room Name';
         }
         field(13;"Room Address";Text[30])
         {
+            Caption = 'Room Address';
         }
         field(14;"Room Address 2";Text[30])
         {
+            Caption = 'Room Address 2';
         }
         field(15;"Room Post Code";Code[20])
         {
             TableRelation = "Post Code".Code;
             ValidateTableRelation = false;
+            Caption = 'Room Post Code';
 
             trigger OnValidate();
             begin
@@ -157,6 +171,7 @@ table 123456710 "CSD Seminar Reg. Header"
         }
         field(16;"Room City";Text[30])
         {
+            Caption = 'Room City';
 
             trigger OnValidate();
             begin
@@ -166,13 +181,16 @@ table 123456710 "CSD Seminar Reg. Header"
         field(17;"Room Country/Reg. Code";Code[10])
         {
             TableRelation = "Country/Region";
+            Caption = 'Room Country/Reg. Code';
         }
         field(18;"Room County";Text[30])
         {
+            Caption = 'Room County';
         }
         field(19;"Seminar Price";Decimal)
         {
             AutoFormatType = 1;
+            Caption = 'Seminar Price';
 
             trigger OnValidate();
             begin
@@ -199,10 +217,12 @@ table 123456710 "CSD Seminar Reg. Header"
         field(20;"Gen. Prod. Posting Group";Code[10])
         {
             TableRelation = "Gen. Product Posting Group".Code;
+            Caption = 'Gen. Prod. Posting Group';
         }
         field(21;"VAT Prod. Posting Group";Code[10])
         {
             TableRelation = "VAT Product Posting Group".Code;
+            Caption = 'VAT Prod. Posting Group';
         }
         field(22;Comment;Boolean)
         {
@@ -210,25 +230,31 @@ table 123456710 "CSD Seminar Reg. Header"
                                                               "No."=Field("No.")));
             Editable = false;
             FieldClass = FlowField;
+            Caption = 'Comment';
         }
         field(23;"Posting Date";Date)
         {
+            Caption = 'Posting Date';
         }
         field(24;"Document Date";Date)
         {
+            Caption = 'Document Date';
         }
         field(25;"Reason Code";Code[10])
         {
             TableRelation = "Reason Code".Code;
+            Caption = 'Reason Code';
         }
         field(26;"No. Series";Code[10])
         {
             Editable = false;
             TableRelation = "No. Series".Code;
+            Caption = 'No. Series';
         }
         field(27;"Posting No. Series";Code[10])
         {
             TableRelation = "No. Series".Code;
+            Caption = 'Posting No. Series';
 
             trigger OnLookup();
             begin
@@ -258,6 +284,7 @@ table 123456710 "CSD Seminar Reg. Header"
         }
         field(28;"Posting No.";Code[20])
         {
+            Caption = 'Posting No.';
         }
 
     }
@@ -283,8 +310,8 @@ table 123456710 "CSD Seminar Reg. Header"
         SeminarRoom : Record Resource;
         SeminarSetup : Record "CSD Seminar Setup";
         NoSeriesMgt : Codeunit NoSeriesManagement;
-        Text001 : TextConst ENU = 'You cannot delete the Seminar Registration, because there is at least one %1 where %2=%3.';
-        Text002 : TextConst ENU = 'You cannot change the %1, because there is at least one %2 with %3=%4.';
+        Text001 : Label 'You cannot delete the Seminar Registration, because there is at least one %1 where %2=%3.';
+        Text002 : Label 'You cannot change the %1, because there is at least one %2 with %3=%4.';
         Text004 : Label 'This Seminar is for %1 participants. \The selected Room has a maximum of %2 participants \Do you want to change %3 for the Seminar from %4 to %5?';
         Text005 : Label 'Should the new %1 be copied to all %2 that are not yet invoiced?';
         Text006 : Label 'You cannot delete the Seminar Registration, because there is at least one %1.';

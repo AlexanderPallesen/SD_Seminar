@@ -19,7 +19,8 @@ table 123456704 "CSD Seminar Comment Line"
         field(3;"No.";Code[20])
         {
             Caption = 'No.';
-            TableRelation = if ("Table Name" = const(Seminar)) "CSD Seminar";
+            TableRelation = if ("Table Name" = const(Seminar)) "CSD Seminar"
+                            else if ("Table Name" = const("Seminar Registration")) "CSD Seminar Reg. Header";
         }
         field(4;"Line No.";Integer)
         {
@@ -47,4 +48,16 @@ table 123456704 "CSD Seminar Comment Line"
             Clustered = true;
         }
     }
+
+    procedure SetupNewLine();
+    var
+        SeminarCommentLine: record "CSD Seminar Comment Line";
+    begin
+        SeminarCommentLine.SetRange("Table Name","Table Name");
+        SeminarCommentLine.SetRange("No.","No.");
+        SeminarCommentLine.SetRange("Document Line No.","Document Line No.");
+        SeminarCommentLine.SetRange(Date,WorkDate);
+        if SeminarCommentLine.IsEmpty then
+            Date := WorkDate;
+    end;
 }

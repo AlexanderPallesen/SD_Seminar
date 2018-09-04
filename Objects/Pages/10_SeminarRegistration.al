@@ -5,7 +5,7 @@ page 123456710 "CSD Seminar Registration"
     //     - Created new page
 
     Caption = 'Seminar Registration';
-    PageType = Card;
+    PageType = Document;
     SourceTable = "CSD Seminar Reg. Header";
     UsageCategory = tasks;
 
@@ -58,6 +58,11 @@ page 123456710 "CSD Seminar Registration"
                 {
                 }
             }
+            part(SeminarRegistrationLines;"CSD Seminar Reg. Subpage")
+            {
+                Caption = 'Lines';
+                SubPageLink = "Document No." = field("No.");
+            }
             group("Seminar Room")
             {
                 field("Room Resource Code";"Room Code")
@@ -103,6 +108,11 @@ page 123456710 "CSD Seminar Registration"
             part("Seminar Details FactBox";"CSD Seminar Details FactBox")
             {
                 SubPageLink="No."=field("Seminar No."); 
+            }
+            part("Customer Details FactBox";"Customer Details FactBox")
+            {
+                Provider = SeminarRegistrationLines;
+                SubPageLink = "No." = field("Bill-to Customer No.");
             }
             systempart("Links";Links)
             {

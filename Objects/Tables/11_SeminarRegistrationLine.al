@@ -10,13 +10,16 @@ table 123456711 "CSD Seminar Registration Line"
         field(1;"Document No.";Code[20])
         {
             TableRelation = "CSD Seminar Reg. Header";
+            Caption = 'Document No.';
         }
         field(2;"Line No.";Integer)
         {
+            Caption = 'Line No.';
         }
         field(3;"Bill-to Customer No.";Code[20])
         {
             TableRelation = Customer;
+            Caption = 'Bill-To Customer No.';
 
             trigger OnValidate();
             begin
@@ -33,6 +36,7 @@ table 123456711 "CSD Seminar Registration Line"
         field(4;"Participant Contact No.";Code[20])
         {
             TableRelation = Contact;
+            Caption = 'Participant Contact No.';
 
             trigger OnLookup();
             begin
@@ -71,25 +75,31 @@ table 123456711 "CSD Seminar Registration Line"
             CalcFormula = Lookup(Contact.Name where ("No."=Field("Participant Contact No.")));
             Editable = false;
             FieldClass = FlowField;
+            Caption = 'Participant Name';
         }
         field(6;"Registration Date";Date)
         {
             Editable = false;
+            Caption = 'Registration Date';
         }
         field(7;"To Invoice";Boolean)
         {
             InitValue = true;
+            Caption = 'To Invoice';
         }
         field(8;Participated;Boolean)
         {
+            Caption = 'Participated';
         }
         field(9;"Confirmation Date";Date)
         {
             Editable = false;
+            Caption = 'Confirmation Date';
         }
         field(10;"Seminar Price";Decimal)
         {
             AutoFormatType = 2;
+            Caption = 'Seminar Price';
 
             trigger OnValidate();
             begin
@@ -101,6 +111,7 @@ table 123456711 "CSD Seminar Registration Line"
             DecimalPlaces = 0:5;
             MaxValue = 100;
             MinValue = 0;
+            Caption = 'Line Discount %';
 
             trigger OnValidate();
             begin
@@ -116,6 +127,7 @@ table 123456711 "CSD Seminar Registration Line"
         field(12;"Line Discount Amount";Decimal)
         {
             AutoFormatType = 1;
+            Caption = 'Line Discount Amount';
 
             trigger OnValidate();
             begin
@@ -131,6 +143,7 @@ table 123456711 "CSD Seminar Registration Line"
         field(13;Amount;Decimal)
         {
             AutoFormatType = 1;
+            Caption = 'Amount';
 
             trigger OnValidate();
             begin
@@ -149,6 +162,7 @@ table 123456711 "CSD Seminar Registration Line"
         field(14;Registered;Boolean)
         {
             Editable = false;
+            Caption = 'Registered';
         }
     }
 
