@@ -9,8 +9,8 @@ table 123456704 "CSD Seminar Comment Line"
         field(1;"Table Name";option)
         {
             Caption = 'Table Name';
-            OptionMembers = "Seminar","Seminar Registration","Posted Seminar Reg. Header";
-            OptionCaption = 'Seminar,Seminar Registration,Posted Seminar Reg. Header';
+            OptionMembers = "Seminar","Seminar Registration","Posted Seminar Registration";
+            OptionCaption = 'Seminar,Seminar Registration,Posted Seminar Registration';
         }
         field(2;"Document Line No.";Integer)
         {
@@ -20,7 +20,8 @@ table 123456704 "CSD Seminar Comment Line"
         {
             Caption = 'No.';
             TableRelation = if ("Table Name" = const(Seminar)) "CSD Seminar"
-                            else if ("Table Name" = const("Seminar Registration")) "CSD Seminar Reg. Header";
+                            else if ("Table Name" = const("Seminar Registration")) "CSD Seminar Reg. Header"
+                            else if ("Table Name" = const("Posted Seminar Registration")) "CSD Posted Seminar Reg. Header";
         }
         field(4;"Line No.";Integer)
         {
